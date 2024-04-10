@@ -1,5 +1,6 @@
 package simstation;
 import mvc.*;
+
 public class ResumeCommand extends Command {
     public ResumeCommand(Model model) {
         super(model);
@@ -7,6 +8,7 @@ public class ResumeCommand extends Command {
 
     @Override
     public void execute() {
-
+        Simstation sim = (Simstation)model;
+        sim.resume();
     }
 }
