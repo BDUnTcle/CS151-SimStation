@@ -2,8 +2,8 @@ package simstation;
 import mvc.*;
 import javax.swing.*;
 
-public class SimstationPanel extends AppPanel {
-    public SimstationPanel(AppFactory factory) {
+public class SimulationPanel extends AppPanel {
+    public SimulationPanel(AppFactory factory) {
         super(factory);
 
         JButton start = new JButton("Start");
@@ -28,7 +28,7 @@ public class SimstationPanel extends AppPanel {
     }
 
     public static void main(String[] args) {
-        AppPanel panel = new SimstationPanel(new SimstationFactory());
+        AppPanel panel = new SimulationPanel(new SimulationFactory());
         panel.display();
     }
 }

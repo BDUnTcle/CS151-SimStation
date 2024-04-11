@@ -1,13 +1,13 @@
 package simstation;
 import mvc.*;
 
-public class SimstationFactory implements AppFactory {
+public class SimulationFactory implements AppFactory {
     @Override
-    public Model makeModel() { return new Simstation(); }
+    public Model makeModel() { return new Simulation(); }
 
     @Override
     public View makeView(Model m) {
-        return new SimstationView((Simstation)m);
+        return new SimulationView((Simulation)m);
     }
 
     @Override
