@@ -8,7 +8,7 @@ public class ResumeCommand extends Command {
 
     @Override
     public void execute() {
-        Simstation sim = (Simstation)model;
+        Simulation sim = (Simulation)model;
         sim.resume();
     }
 }
