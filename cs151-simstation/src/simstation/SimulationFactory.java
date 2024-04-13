@@ -1,9 +1,9 @@
 package simstation;
 import mvc.*;
 
-public class SimulationFactory implements AppFactory {
+public abstract class SimulationFactory implements AppFactory {
     @Override
-    public Model makeModel() { return new Simulation(); }
+    public abstract Model makeModel();
 
     @Override
     public View makeView(Model m) {
@@ -16,14 +16,20 @@ public class SimulationFactory implements AppFactory {
     // source added 3/15 to support text fields
     @Override
     public Command makeEditCommand(Model model, String type, Object source) {
-        return switch (type) {
-            case "Start" -> new StartCommand(model);
-            case "Suspend" -> new SuspendCommand(model);
-            case "Resume" -> new ResumeCommand(model);
-            case "Stop" -> new StopCommand(model);
-            case "Stats" -> new StatsCommand(model);
-            default -> null;
-        };
+        switch (type) {
+            case "Start" :
+                return new StartCommand(model);
+            case "Suspend":
+                return new SuspendCommand(model);
+            case "Resume":
+                return new ResumeCommand(model);
+            case "Stop":
+                return new StopCommand(model);
+            case "Stats":
+                return new StatsCommand(model);
+            default:
+                return null;
+        }
     }
 
     @Override

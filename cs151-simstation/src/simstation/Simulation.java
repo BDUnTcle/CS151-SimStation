@@ -1,5 +1,6 @@
 package simstation;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -10,7 +11,7 @@ import mvc.Model;
 public class Simulation extends Model {
 
 	transient private Timer timer; // timers aren't serializable
-	private List<Agent> agents;
+	private ArrayList<Agent> agents;
 	private int clock;
 	private int state;
 
@@ -19,13 +20,16 @@ public class Simulation extends Model {
 		clock = 0;
 		state = 0;
 	}
-
+	public ArrayList<Agent> getAgents()
+	{
+		return agents;
+	}
 	public void start() {
 		populate();
 		//startTimer();
 		for (Agent a : agents) {
 			Thread thread = new Thread(a);
-			a.start();
+			thread.start();
 		}
 		state = 1;
 	}
@@ -62,16 +66,18 @@ public class Simulation extends Model {
 		timer.scheduleAtFixedRate(new ClockUpdater(), 1000, 1000);
 	}
 
-	// empty. specified in subclass
-	public void populate() {
 
+	public void populate() {
+		// empty. specified in subclass
 	}
 
 	public void addAgent(Agent a) {
 		agents.add(a);
-		a.setSimulation(this);
 	}
-
+	public void changed(Point old_point, Point new_point)
+	{
+		changed();
+	}
 	private class ClockUpdater extends TimerTask {
 		public void run() {
 			clock++;
