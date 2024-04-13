@@ -1,11 +1,14 @@
 package simstation;
 import mvc.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 
 public class SimulationPanel extends AppPanel {
     public SimulationPanel(AppFactory factory) {
         super(factory);
-
+//        Border lineBorder = BorderFactory.createLineBorder(Color.BLACK, 3);
+//        setBorder(lineBorder);
         JButton start = new JButton("Start");
         start.addActionListener(this);
         controlPanel.add(start);
@@ -25,10 +28,5 @@ public class SimulationPanel extends AppPanel {
         JButton stats = new JButton("Stats");
         stats.addActionListener(this);
         controlPanel.add(stats);
-    }
-
-    public static void main(String[] args) {
-        AppPanel panel = new SimulationPanel(new SimulationFactory());
-        panel.display();
     }
 }
