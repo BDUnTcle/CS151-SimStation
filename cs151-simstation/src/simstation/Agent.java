@@ -11,13 +11,13 @@ public abstract class Agent implements Serializable, Runnable {
 	private String name;
 	public Heading heading;
 	private Point m_coord;
-	private int m_radius = RADIUS;
+	private int m_radius = RADIUS;//this is use for defining the height and width of each rectangle in View
 	private boolean suspended, stopped;
 	transient protected Thread myThread;
 	private Simulation world;
 
 	public Agent(Simulation manager) {
-		world = manager;
+		setSimulation(manager);
 		heading = new Heading();
 		suspended = false;
 		stopped = false;
@@ -29,6 +29,11 @@ public abstract class Agent implements Serializable, Runnable {
 		this.name = name;
 	}
 	public Point getCoord(){return m_coord;}
+
+	public Heading getHeading() {
+		return heading;
+	}
+
 	@Override
 	public void run() {
 		myThread = Thread.currentThread();
@@ -103,7 +108,7 @@ public abstract class Agent implements Serializable, Runnable {
 	public void setSimulation(Simulation world) {
 		this.world = world;
 	}
-
+	public Simulation getSimulation(){return this.world;}
 	public void move(int steps) {
 		Point old_point = m_coord;
 		switch (heading.getHeading())
