@@ -62,6 +62,10 @@ public class Simulation extends Model {
 			a.resume();
 		}
 	}
+	
+	public int getClock() {
+		return clock;
+	}
 
 	public void stop() {
 		state = STATE.READY;

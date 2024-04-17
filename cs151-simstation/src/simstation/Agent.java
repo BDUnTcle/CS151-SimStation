@@ -14,7 +14,7 @@ public abstract class Agent implements Serializable, Runnable {
 	private int m_radius = RADIUS;
 	private boolean suspended, stopped;
 	transient protected Thread myThread;
-	private Simulation world;
+	private Simstation world;
 
 	public Agent(Simulation manager) {
 		world = manager;
