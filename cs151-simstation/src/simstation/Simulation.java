@@ -41,7 +41,7 @@ public class Simulation extends Model {
 	public int getViewHeight(){return view_height;}
 	public void start() {
 		populate();
-		//startTimer();
+		startTimer();
 		for (Agent a : agents) {
 			Thread thread = new Thread(a);
 			thread.start();
@@ -69,6 +69,7 @@ public class Simulation extends Model {
 				a.stop();
 		}
 		agents.clear();
+		stopTimer();
 		changed();
 	}
 
@@ -82,9 +83,12 @@ public class Simulation extends Model {
 		}
 		return null;
 	}
-
-	public void stats() {
-
+	public String[] getStatus()
+	{
+		String[] status = new String[2];
+		status[0] = "#agents = "+agents.size();
+		status[1] = "clock = " + clock;
+		return status;
 	}
 	public STATE getState()
 	{
