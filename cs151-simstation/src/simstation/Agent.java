@@ -14,7 +14,7 @@ public abstract class Agent implements Serializable, Runnable {
 	private int m_radius = RADIUS;
 	private boolean suspended, stopped;
 	transient protected Thread myThread;
-	private Simstation world;
+	private Simulation world;
 
 	public Agent(Simulation manager) {
 		world = manager;
@@ -103,7 +103,7 @@ public abstract class Agent implements Serializable, Runnable {
 	public void setSimulation(Simulation world) {
 		this.world = world;
 	}
-
+	public Simulation getSimulation(){return this.world;}
 	public void move(int steps) {
 		Point old_point = m_coord;
 		switch (heading.getHeading())

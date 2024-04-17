@@ -18,6 +18,7 @@ public class PlagueView extends SimulationView {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public void paintComponent(Graphics gc) {
 		super.paintComponent(gc);
 		Simulation simulation = (Simulation)model;
