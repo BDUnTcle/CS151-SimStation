@@ -36,7 +36,6 @@ public class Simulation extends Model {
 	public void setViewHeight(int height) {
 		view_height = height;
 	}
-
 	public int getViewWidth(){return view_width;}
 	public int getViewHeight(){return view_height;}
 	public void start() {
@@ -61,6 +60,10 @@ public class Simulation extends Model {
 		for (Agent a : agents) {
 			a.resume();
 		}
+	}
+	
+	public int getClock() {
+		return clock;
 	}
 
 	public void stop() {
