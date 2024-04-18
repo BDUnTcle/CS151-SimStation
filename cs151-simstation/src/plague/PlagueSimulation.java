@@ -1,6 +1,7 @@
 package plague;
 
 import mvc.AppPanel;
+import mvc.Utilities;
 import simstation.Agent;
 import simstation.Simulation;
 import simstation.SimulationPanel;
@@ -15,18 +16,18 @@ public class PlagueSimulation extends Simulation {
 	}
 
 	@Override
-    public String[] stats()
+    public String[] getStatus()
     {
 		String []stats = new String[3];
-		int i = 0;
+		double i = 0;
         for (Agent a : getAgents()) {
         	if (((Host)a).getInfected()) {
         		i++;
         	}
         }
-        double infected = i / 100.0;
+        double infected = (i / AGENTS) * 100;
         stats[0] = "#Agents = " + AGENTS;
-        stats[1] = "clock = " + 3;
+        stats[1] = "clock = " + getClock();
         stats[2] = "% infected " + infected;
         return stats;
     }
