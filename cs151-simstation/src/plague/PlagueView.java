@@ -21,7 +21,7 @@ public class PlagueView extends SimulationView {
 	@Override
 	public void paintComponent(Graphics gc) {
 		super.paintComponent(gc);
-		Simulation simulation = (Simulation)model;
+		PlagueSimulation simulation = (PlagueSimulation)model;
 		simulation.setViewWidth(getWidth());
 		simulation.setViewHeight(getHeight());
 		ArrayList<Agent> agentList = simulation.getAgents();
