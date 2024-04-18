@@ -30,6 +30,10 @@ public abstract class Agent implements Serializable, Runnable {
 	}
 	public Point getCoord(){return m_coord;}
 
+	public Simulation getWorld() {
+		return world;
+	}
+
 	public Heading getHeading() {
 		return heading;
 	}
@@ -37,6 +41,7 @@ public abstract class Agent implements Serializable, Runnable {
 	@Override
 	public void run() {
 		myThread = Thread.currentThread();
+		checkSuspended();
 		onStart();
 		while (!stopped) {
 			try {

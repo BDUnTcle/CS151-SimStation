@@ -1,7 +1,6 @@
-package prisonersdilemma;
+package PDtournament;
 import mvc.*;
 import simstation.*;
-import java.util.*;
 
 public class PDFactory extends SimulationFactory {
 

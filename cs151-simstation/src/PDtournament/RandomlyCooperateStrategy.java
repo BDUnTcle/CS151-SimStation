@@ -1,9 +1,10 @@
-package prisonersdilemma;
+package PDtournament;
 import mvc.*;
 import java.io.Serializable;
 import java.util.*;
 
-public class RandomlyCooperateStrategy implements Strategy, Serializable {
+public class RandomlyCooperateStrategy extends Strategy implements Serializable {
+
 
     @Override
     public boolean decide(HashMap<Prisoner, Boolean> grudges, Prisoner partner) {

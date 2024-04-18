@@ -14,8 +14,4 @@ class PlagueFactory extends SimulationFactory {
 	public String getTitle() {
 		return "Plague";
 	}
-	
-	public String[] getStats() {
-		return getStats();
-	}
 }

@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
 
 public class SimulationPanel extends AppPanel {
     @Override
@@ -82,5 +83,15 @@ public class SimulationPanel extends AppPanel {
         JButton stats = new JButton("Stats");
         stats.addActionListener(this);
         controlPanel.add(stats);
+    }
+    @Override
+    public void setModel(Model m) {
+        super.setModel(m); // calling AppPanel.setModel(m)
+        Simulation s = (Simulation)m;
+        Iterator<Agent> it = s.getAgents().iterator();
+        while(it.hasNext()) {
+            Thread t = new Thread(it.next());
+            t.start(); // this will call Agent.run (see below)
+        }
     }
 }

@@ -1,6 +1,6 @@
-package prisonersdilemma;
+package PDtournament;
 import simstation.*;
-import mvc.*;
+
 import java.util.*;
 
 public class PDSimulation extends Simulation {
@@ -11,7 +11,10 @@ public class PDSimulation extends Simulation {
     @Override
     public void populate() {
         for (int i = 0; i < COMMUNITYSIZE; i++) {
-            addAgent(new Prisoner(initialize(i), i % 4));
+            Strategy strategy = initialize(i);
+            Prisoner new_prisoner = new Prisoner(this,strategy, i % 4);
+            strategy.setPrisoner(new_prisoner);
+            addAgent(new_prisoner);
         }
     }
 
@@ -31,8 +34,8 @@ public class PDSimulation extends Simulation {
         return null;
     }
 
-   // @Override
-    public String[] getStats() {
+    @Override
+    public String[] getStatus() {
         double[] fitness = new double[4];
         double[] gains = new double[4];
         Iterator<Agent> agentIterator = agentIterator();
@@ -71,7 +74,7 @@ public class PDSimulation extends Simulation {
     }
 
     private Iterator<Agent> agentIterator() {
-	return null;
+        return getAgents().iterator();
 }
 
 	public static void main (String[] args) {

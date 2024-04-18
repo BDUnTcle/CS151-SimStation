@@ -10,7 +10,6 @@ public class Bird extends Agent {
     public static int SPEED_LIMIT=5;
 
     private int speed;
-    private int m_radius;
     public int getSpeed() {
         return speed;
     }
@@ -20,14 +19,19 @@ public class Bird extends Agent {
         super(manager);
         heading = new Heading();
         speed = Utilities.rng.nextInt(SPEED_LIMIT)+1;
-        m_radius = RADIUS;
     }
 
     @Override
     public void update() {
-        Bird neighbor = (Bird) getSimulation().getNeighbor(this,m_radius);
-        speed = neighbor.getSpeed();
-        heading = neighbor.getHeading();
+        Bird neighbor = (Bird) getSimulation().getNeighbor(this,RADIUS);
+        if(neighbor!= null) {
+            speed = neighbor.getSpeed();
+            heading = neighbor.getHeading();
+        }
+        else {
+            speed = Utilities.rng.nextInt(SPEED_LIMIT)+1;
+            heading = new Heading();
+        }
         move(speed);
     }
 }

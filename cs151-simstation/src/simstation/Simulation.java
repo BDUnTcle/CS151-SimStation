@@ -15,7 +15,7 @@ public class Simulation extends Model {
 		READY,RUNNING,STOPPED,SUSPENDED
 	}
 	transient private Timer timer; // timers aren't serializable
-	private ArrayList<Agent> agents;
+	private List<Agent> agents;
 	private int clock;
 	private STATE state;
 	private int view_width;
@@ -27,7 +27,7 @@ public class Simulation extends Model {
 	}
 	public ArrayList<Agent> getAgents()
 	{
-		return agents;
+		return (ArrayList<Agent>)agents;
 	}
 	public void setViewWidth(int width){
 		view_width = width;
@@ -79,7 +79,9 @@ public class Simulation extends Model {
 	public Agent getNeighbor(Agent a, double radius) {
 		for(Agent agent:agents)
 		{
-			if(agent.getCoord().distance(a.getCoord()) <= radius)
+			if(a==agent) continue;
+			double distance = agent.getCoord().distance(a.getCoord());
+			if( distance <= radius)
 			{
 				return agent;
 			}
@@ -105,7 +107,6 @@ public class Simulation extends Model {
 		timer.cancel();
 		timer.purge();
 	}
-
 	public void populate() {
 		// empty. specified in subclass
 	}

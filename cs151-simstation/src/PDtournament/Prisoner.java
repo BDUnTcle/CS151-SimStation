@@ -1,4 +1,4 @@
-package prisonersdilemma;
+package PDtournament;
 import mvc.*;
 import simstation.*;
 import java.util.*;
@@ -14,8 +14,8 @@ public class Prisoner extends Agent {
     private Strategy strat;
     private int stratAsInt;
     
-    public Prisoner(Strategy strat, int i) {
-        super();
+    public Prisoner(Simulation manager,Strategy strat, int i) {
+        super(manager);
         this.strat = strat;
         this.stratAsInt = i;
         this.vindictiveness = Utilities.rng.nextInt(PDSimulation.MAX_VINDICTIVENESS);
@@ -27,7 +27,7 @@ public class Prisoner extends Agent {
     }
 
     public void update() {
-        Prisoner partner = (Prisoner)world.getNeighbor(this, RADIUS);
+        Prisoner partner = (Prisoner)getSimulation().getNeighbor(this, RADIUS);
         boolean decision = cooperate(partner);
         boolean partnerDescision;
         if (partner != null && partner.strat != null) {
@@ -77,7 +77,7 @@ public class Prisoner extends Agent {
        
         for (int i=0; i<MOVE_AMT; i++) {
             heading = Heading.random();
-            move(1);
+            move(2);
         }
     }
 
